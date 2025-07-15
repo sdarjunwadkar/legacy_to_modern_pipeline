@@ -1,0 +1,21 @@
+# Byte-compiled / cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs and DBs
+logs/
+*.db
+
+# Environment
+.env
+.venv/
+
+# Mac system files
+.DS_Store
+
+# Misc
+*.parquet
+*.csv
