@@ -1,5 +1,0 @@
-test_file:
-  type: files
-  connection:
-    folders:
-      - data/incoming

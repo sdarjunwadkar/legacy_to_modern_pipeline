@@ -1,6 +1,0 @@
-checks for test_file:
-  - schema:
-      fail:
-        when required column missing: [id, value]
-  - missing_count(id) = 0
-  - missing_count(value) = 0
