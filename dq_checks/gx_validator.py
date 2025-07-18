@@ -48,10 +48,20 @@ def run_validation_for_file(filename: str, suite_name: str = "default_suite") ->
             print(f"ℹ️ Asset '{asset_name}' already exists. Using it.")
             asset = next(a for a in datasource.assets if a.name == asset_name)
         else:
-            asset = datasource.add_csv_asset(
-                name=asset_name,
-                batching_regex=re.escape(filename)  # Escapes special chars like dots
-            )
+            # Choose correct method based on file extension
+            if filename.endswith(".csv"):
+                asset = datasource.add_csv_asset(
+                    name=asset_name,
+                    batching_regex=re.escape(filename)
+                )
+            elif filename.endswith(".xlsx"):
+                asset = datasource.add_excel_asset(
+                    name=asset_name,
+                    batching_regex=re.escape(filename)
+                )
+            else:
+                raise ValueError(f"Unsupported file type: {filename}")
+
             print(f"✅ Registered new asset: {asset_name}")
 
     # 2. Create suite if it doesn't exist

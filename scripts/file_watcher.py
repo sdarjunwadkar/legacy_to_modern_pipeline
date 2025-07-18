@@ -22,8 +22,13 @@ def compute_hash(file_path):
 
 class FileChangeHandler(FileSystemEventHandler):
     def on_modified(self, event):
-        if not event.is_directory and event.src_path.endswith(".csv"):
+        if (
+            not event.is_directory
+            and event.src_path.endswith((".csv", ".xlsx"))
+            and not os.path.basename(event.src_path).startswith("~$")
+        ):
             filename = os.path.basename(event.src_path)
+            print(f"[DEBUG] Detected: {filename}")
             file_path = os.path.join(WATCH_FOLDER, filename)
             new_hash = compute_hash(file_path)
 
@@ -37,6 +42,20 @@ class FileChangeHandler(FileSystemEventHandler):
                 run_validation_for_file(filename)
             else:
                 print(f"[UNCHANGED] {filename}")
+
+    def on_created(self, event):
+        if (
+            not event.is_directory
+            and event.src_path.endswith((".csv", ".xlsx"))
+            and not os.path.basename(event.src_path).startswith("~$")
+        ):
+            filename = os.path.basename(event.src_path)
+            print(f"[DEBUG] Created: {filename}")
+            file_path = os.path.join(WATCH_FOLDER, filename)
+            new_hash = compute_hash(file_path)
+            hash_cache[filename] = new_hash
+            print(f"[NEW] {filename}")
+            run_validation_for_file(filename)
 
 if __name__ == "__main__":
     print(f"📁 Watching folder: {WATCH_FOLDER}")

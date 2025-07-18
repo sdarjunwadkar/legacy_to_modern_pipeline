@@ -103,6 +103,9 @@ fluent_datasources:
       test_file_asset:
         type: csv
         batching_regex: test_file\.csv
+      BigData_asset:
+        type: excel
+        batching_regex: BigData\.xlsx
     base_directory: /Users/sharvilarjunwadkar/Downloads/Projects/legacy_to_modern_pipeline/data/incoming
 notebooks:
 include_rendered_content:
