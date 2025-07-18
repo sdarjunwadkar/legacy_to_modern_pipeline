@@ -1,47 +1,42 @@
+# scripts/file_watcher.py
+
 import time
 import os
 import hashlib
-import json
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+import sys
+from pathlib import Path
+
+# Add the root directory of the project to Python path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from dq_checks.gx_validator import run_validation_for_file
 
 WATCH_FOLDER = "data/incoming"
-HASH_CACHE_FILE = "logs/file_hash_cache.json"
+hash_cache = {}
 
-# Load or create hash cache
-if os.path.exists(HASH_CACHE_FILE):
-    with open(HASH_CACHE_FILE, "r") as f:
-        file_hashes = json.load(f)
-else:
-    file_hashes = {}
-
-def compute_file_hash(path):
-    with open(path, "rb") as f:
+def compute_hash(file_path):
+    with open(file_path, "rb") as f:
         return hashlib.md5(f.read()).hexdigest()
 
 class FileChangeHandler(FileSystemEventHandler):
     def on_modified(self, event):
-        if event.is_directory:
-            return
-        filepath = event.src_path
-        filename = os.path.basename(filepath)
+        if not event.is_directory and event.src_path.endswith(".csv"):
+            filename = os.path.basename(event.src_path)
+            file_path = os.path.join(WATCH_FOLDER, filename)
+            new_hash = compute_hash(file_path)
 
-        if not filename.endswith((".csv", ".xlsx")):
-            return
-
-        new_hash = compute_file_hash(filepath)
-        old_hash = file_hashes.get(filename)
-
-        if new_hash != old_hash:
-            print(f"[UPDATED] {filename}")
-            file_hashes[filename] = new_hash
-
-            # Save updated hash cache
-            with open(HASH_CACHE_FILE, "w") as f:
-                json.dump(file_hashes, f, indent=2)
-
-        else:
-            print(f"[UNCHANGED] {filename}")
+            if filename not in hash_cache:
+                hash_cache[filename] = new_hash
+                print(f"[NEW] {filename}")
+                run_validation_for_file(filename)
+            elif hash_cache[filename] != new_hash:
+                hash_cache[filename] = new_hash
+                print(f"[UPDATED] {filename}")
+                run_validation_for_file(filename)
+            else:
+                print(f"[UNCHANGED] {filename}")
 
 if __name__ == "__main__":
     print(f"📁 Watching folder: {WATCH_FOLDER}")
@@ -52,7 +47,7 @@ if __name__ == "__main__":
 
     try:
         while True:
-            time.sleep(2)
+            time.sleep(1)
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
