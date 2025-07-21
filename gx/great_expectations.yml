@@ -106,6 +106,30 @@ fluent_datasources:
       BigData_asset:
         type: excel
         batching_regex: BigData\.xlsx
+      UTP_Project_Info_CSJ_List_asset:
+        type: excel
+        batching_regex: UTP_Project_Info\.xlsx
+        sheet_name: CSJ List
+      UTP_Project_Info_Comments_&_Actions_asset:
+        type: excel
+        batching_regex: UTP_Project_Info\.xlsx
+        sheet_name: Comments & Actions
+      UTP_Project_Info_Project_Names_asset:
+        type: excel
+        batching_regex: UTP_Project_Info\.xlsx
+        sheet_name: Project Names
+      UTP_Project_Info_Project_Tiers_asset:
+        type: excel
+        batching_regex: UTP_Project_Info\.xlsx
+        sheet_name: Project Tiers
+      UTP_Project_Info_Project_Group_ID_asset:
+        type: excel
+        batching_regex: UTP_Project_Info\.xlsx
+        sheet_name: Project Group ID
+      UTP_Project_Info_HWY_Various_asset:
+        type: excel
+        batching_regex: UTP_Project_Info\.xlsx
+        sheet_name: HWY Various
     base_directory: /Users/sharvilarjunwadkar/Downloads/Projects/legacy_to_modern_pipeline/data/incoming
 notebooks:
 include_rendered_content:
