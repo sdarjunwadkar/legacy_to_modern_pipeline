@@ -4,6 +4,8 @@ from pathlib import Path
 import great_expectations as gx
 import re
 from great_expectations.core.expectation_suite import ExpectationSuite
+from dq_checks.schemas import BIGDATA_COLUMNS
+import pandas as pd
 
 # Initialize GE context once
 context = gx.get_context()
@@ -68,6 +70,31 @@ def run_validation_for_file(filename: str, suite_name: str = "default_suite") ->
     if suite_name not in context.list_expectation_suite_names():
         context.save_expectation_suite(ExpectationSuite(expectation_suite_name=suite_name))
         print(f"🆕 Created new suite: {suite_name}")
+
+    # 2.5 Add expectations based on schema
+    validator = context.get_validator(
+        batch_request=asset.build_batch_request(),
+        expectation_suite_name=suite_name
+    )
+
+    for column, expected_type in BIGDATA_COLUMNS.items():
+        validator.expect_column_to_exist(column)
+        validator.expect_column_values_to_not_be_null(column)
+
+        actual_df = validator.active_batch.data.dataframe
+        actual_dtype = actual_df[column].dtype
+
+        if expected_type == "string":
+            validator.expect_column_values_to_be_of_type(column, "str")
+
+        elif expected_type == "number":
+            validator.expect_column_values_to_be_in_type_list(column, ["int", "float"])
+
+        elif expected_type == "datetime":
+            if pd.api.types.is_string_dtype(actual_dtype):
+                validator.expect_column_values_to_match_strftime_format(column, "%Y-%m-%d", mostly=0.9)
+            else:
+                print(f"ℹ️ Skipping strftime format check for '{column}' (type: {actual_dtype})")
 
     # 3. Run validation
     checkpoint = context.add_or_update_checkpoint(
