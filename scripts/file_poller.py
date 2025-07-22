@@ -4,6 +4,16 @@ import os
 import time
 import hashlib
 from dq_checks.gx_validator import run_validation_for_file
+import logging
+
+log_file = "logs/file_poller.log"
+logging.basicConfig(
+    filename=log_file,
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
+logging.getLogger().addHandler(logging.StreamHandler())
+
 
 POLL_INTERVAL = 60  # seconds
 WATCH_DIR = "data/incoming"
@@ -16,8 +26,8 @@ def compute_md5(file_path):
     return hasher.hexdigest()
 
 def main():
-    print(f"🔁 Starting file poller (every {POLL_INTERVAL} seconds)")
-    print(f"📁 Watching folder: {WATCH_DIR}")
+    logging.info(f"🔁 Starting file poller (every {POLL_INTERVAL} seconds)")
+    logging.info(f"📁 Watching folder: {WATCH_DIR}")
     seen_hashes = {}
 
     while True:
@@ -35,19 +45,19 @@ def main():
                 file_hash = compute_md5(file_path)
 
                 if filename not in seen_hashes:
-                    print(f"[NEW] {filename}")
+                    logging.info(f"[NEW] {filename}")
                     seen_hashes[filename] = file_hash
                     run_validation_for_file(filename)
 
                 elif seen_hashes[filename] != file_hash:
-                    print(f"[UPDATED] {filename}")
+                    logging.info(f"[UPDATED] {filename}")
                     seen_hashes[filename] = file_hash
                     run_validation_for_file(filename)
 
                 else:
-                    print(f"[UNCHANGED] {filename}")
+                    logging.info(f"[UNCHANGED] {filename}")
             except Exception as e:
-                print(f"❌ Error processing {filename}: {e}")
+                logging.error(f"❌ Error processing {filename}: {e}")
 
         time.sleep(POLL_INTERVAL)
 
@@ -55,4 +65,4 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n👋 File poller stopped by user. Exiting gracefully.")
+        logging.info("\n👋 File poller stopped by user. Exiting gracefully.")
