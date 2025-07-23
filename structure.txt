@@ -1,56 +1,32 @@
 .
+├── airflow_home
+│   ├── airflow.cfg
+│   ├── airflow.db
+│   ├── dags
+│   ├── logs
+│   └── webserver_config.py
 ├── dags
 │   ├── __pycache__
-│   │   └── file_validation_dag.cpython-311.pyc
 │   └── file_validation_dag.py
 ├── data
 │   ├── bronze
 │   ├── gold
 │   ├── incoming
-│   │   ├── BigData.xlsx
-│   │   └── UTP_Project_Info.xlsx
 │   └── silver
 ├── dbt_project
 ├── dq_checks
 │   ├── __init__.py
 │   ├── __pycache__
-│   │   ├── __init__.cpython-311.pyc
-│   │   ├── gx_validator.cpython-311.pyc
-│   │   └── schemas.cpython-311.pyc
 │   ├── gx_run_validation.py
 │   ├── gx_validator.py
 │   └── schemas.py
 ├── great_expectations
 │   ├── checkpoints
-│   │   ├── BigData_asset_checkpoint.yml
-│   │   ├── test_checkpoint.yml
-│   │   ├── test_file_asset_checkpoint.yml
-│   │   ├── UTP_Project_Info_Comments_&_Actions_asset_checkpoint.yml
-│   │   ├── UTP_Project_Info_CSJ_List_asset_checkpoint.yml
-│   │   ├── UTP_Project_Info_HWY_Various_asset_checkpoint.yml
-│   │   ├── UTP_Project_Info_Project_Group_ID_asset_checkpoint.yml
-│   │   ├── UTP_Project_Info_Project_Names_asset_checkpoint.yml
-│   │   └── UTP_Project_Info_Project_Tiers_asset_checkpoint.yml
 │   ├── expectations
-│   │   ├── default_suite.json
-│   │   ├── test_suite.json
-│   │   ├── UTP_Project_Info_comments_&_actions_suite.json
-│   │   ├── UTP_Project_Info_csj_list_suite.json
-│   │   ├── UTP_Project_Info_hwy_various_suite.json
-│   │   ├── UTP_Project_Info_project_group_id_suite.json
-│   │   ├── UTP_Project_Info_project_names_suite.json
-│   │   └── UTP_Project_Info_project_tiers_suite.json
 │   ├── great_expectations.yml
 │   ├── plugins
-│   │   └── custom_data_docs
 │   ├── profilers
 │   └── uncommitted
-│       ├── config_variables.yml
-│       ├── data_docs
-│       └── validations
-├── gx_create_suite.py
-├── gx_init.py
-├── legacy_to_modern_pipeline_requirements.txt
 ├── logs
 │   ├── file_hash_cache.json
 │   └── file_poller.log
@@ -60,11 +36,11 @@
 ├── scripts
 │   ├── __init__.py
 │   ├── __pycache__
-│   │   ├── __init__.cpython-311.pyc
-│   │   └── file_poller.cpython-311.pyc
 │   ├── file_poller.py
-│   └── file_watcher.py
-├── stable-requirements.txt
+│   ├── file_watcher.py
+│   ├── gx_create_suite.py
+│   ├── gx_init.py
+│   └── reset_airflow_password.py
 └── structure.txt
 
-24 directories, 44 files
+24 directories, 20 files

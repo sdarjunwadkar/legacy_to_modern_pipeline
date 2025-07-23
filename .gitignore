@@ -18,4 +18,4 @@ logs/
 
 # Misc
 *.parquet
-*.csv
+*.csvairflow_home/
