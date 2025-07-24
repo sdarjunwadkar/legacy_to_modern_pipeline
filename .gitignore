@@ -19,3 +19,10 @@ logs/
 # Misc
 *.parquet
 *.csvairflow_home/
+
+# Airflow
+airflow_home/airflow.db
+airflow_home/logs/
+
+# Great Expectations
+great_expectations/uncommitted/

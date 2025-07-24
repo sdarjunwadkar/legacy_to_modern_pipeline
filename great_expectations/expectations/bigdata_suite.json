@@ -1,51 +1,7 @@
 {
   "data_asset_type": null,
-  "expectation_suite_name": "utp_project_info_comments_&_actions_suite",
+  "expectation_suite_name": "bigdata_suite",
   "expectations": [
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "CSJ"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "CSJ"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_of_type",
-      "kwargs": {
-        "column": "CSJ",
-        "type_": "str"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "CCSJ"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "CCSJ"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_of_type",
-      "kwargs": {
-        "column": "CCSJ",
-        "type_": "str"
-      },
-      "meta": {}
-    },
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
@@ -65,6 +21,268 @@
       "kwargs": {
         "column": "District",
         "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "Control Section Job"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "Control Section Job"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "Control Section Job",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "Controlling Project ID"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "Controlling Project ID"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "Controlling Project ID",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "Fiscal Year"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "Fiscal Year"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_type_list",
+      "kwargs": {
+        "column": "Fiscal Year",
+        "type_list": [
+          "int",
+          "float"
+        ]
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "ESTIMATED LET DATE"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "ESTIMATED LET DATE"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "COUNTY"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "COUNTY"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "COUNTY",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "HIGHWAY"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "HIGHWAY"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "HIGHWAY",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "PROJECT CLASS"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "PROJECT CLASS"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "PROJECT CLASS",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "PROJECT DESCRIPTION"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "PROJECT DESCRIPTION"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "PROJECT DESCRIPTION",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "LIMITS FROM"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "LIMITS FROM"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "LIMITS FROM",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "LIMITS TO"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "LIMITS TO"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "LIMITS TO",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "MPO Name"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "MPO Name"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "MPO Name",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "CONSTRUCTION ESTIMATE"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "CONSTRUCTION ESTIMATE"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_type_list",
+      "kwargs": {
+        "column": "CONSTRUCTION ESTIMATE",
+        "type_list": [
+          "int",
+          "float"
+        ]
       },
       "meta": {}
     },
@@ -93,87 +311,21 @@
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
-        "column": "Comments"
+        "column": "FUNDING LINE ORDER #"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
-        "column": "Comments"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_of_type",
-      "kwargs": {
-        "column": "Comments",
-        "type_": "str"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "Current Cat 2, 4, or 12?"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "Current Cat 2, 4, or 12?"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_of_type",
-      "kwargs": {
-        "column": "Current Cat 2, 4, or 12?",
-        "type_": "str"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "Rec Cat 2"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "Rec Cat 2"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_of_type",
-      "kwargs": {
-        "column": "Rec Cat 2",
-        "type_": "str"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "Cat 2 Recommended Amount"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "Cat 2 Recommended Amount"
+        "column": "FUNDING LINE ORDER #"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_be_in_type_list",
       "kwargs": {
-        "column": "Cat 2 Recommended Amount",
+        "column": "FUNDING LINE ORDER #",
         "type_list": [
           "int",
           "float"
@@ -184,21 +336,21 @@
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
-        "column": "Rec Cat 4U"
+        "column": "CATEGORY"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
-        "column": "Rec Cat 4U"
+        "column": "CATEGORY"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_be_of_type",
       "kwargs": {
-        "column": "Rec Cat 4U",
+        "column": "CATEGORY",
         "type_": "str"
       },
       "meta": {}
@@ -206,21 +358,43 @@
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
-        "column": "Cat 4U Recommended Amount"
+        "column": "WORK PROGRAM"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
-        "column": "Cat 4U Recommended Amount"
+        "column": "WORK PROGRAM"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "WORK PROGRAM",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "AUTHORIZED AMOUNT"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "AUTHORIZED AMOUNT"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_be_in_type_list",
       "kwargs": {
-        "column": "Cat 4U Recommended Amount",
+        "column": "AUTHORIZED AMOUNT",
         "type_list": [
           "int",
           "float"
@@ -231,21 +405,21 @@
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
-        "column": "Rec Cat 4R Shift"
+        "column": "FIXED FUNDS"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
-        "column": "Rec Cat 4R Shift"
+        "column": "FIXED FUNDS"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_be_of_type",
       "kwargs": {
-        "column": "Rec Cat 4R Shift",
+        "column": "FIXED FUNDS",
         "type_": "str"
       },
       "meta": {}
@@ -253,21 +427,87 @@
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
-        "column": "Cat 4R Funding Shifts"
+        "column": "PID"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
-        "column": "Cat 4R Funding Shifts"
+        "column": "PID"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "PID",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "FUNDING APPROVAL STATUS"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "FUNDING APPROVAL STATUS"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "FUNDING APPROVAL STATUS",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "TOLL FLAG"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "TOLL FLAG"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "TOLL FLAG",
+        "type_": "str"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "Cat 2 Total Recommened"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "Cat 2 Total Recommened"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_be_in_type_list",
       "kwargs": {
-        "column": "Cat 4R Funding Shifts",
+        "column": "Cat 2 Total Recommened",
         "type_list": [
           "int",
           "float"
@@ -278,43 +518,21 @@
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
-        "column": "Rec Cat 12TTC Shift"
+        "column": "Cat 4U Total Recommened"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
-        "column": "Rec Cat 12TTC Shift"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_of_type",
-      "kwargs": {
-        "column": "Rec Cat 12TTC Shift",
-        "type_": "str"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "Cat 12TTC Funding Shifts"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "Cat 12TTC Funding Shifts"
+        "column": "Cat 4U Total Recommened"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_be_in_type_list",
       "kwargs": {
-        "column": "Cat 12TTC Funding Shifts",
+        "column": "Cat 4U Total Recommened",
         "type_list": [
           "int",
           "float"
@@ -325,43 +543,21 @@
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
-        "column": "Rec Cat 12 CL Shifts"
+        "column": "Cat 4R Total Recommended"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
-        "column": "Rec Cat 12 CL Shifts"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_of_type",
-      "kwargs": {
-        "column": "Rec Cat 12 CL Shifts",
-        "type_": "str"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "Cat 12 CL Funding Shifts"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "Cat 12 CL Funding Shifts"
+        "column": "Cat 4R Total Recommended"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_be_in_type_list",
       "kwargs": {
-        "column": "Cat 12 CL Funding Shifts",
+        "column": "Cat 4R Total Recommended",
         "type_list": [
           "int",
           "float"
@@ -372,43 +568,21 @@
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
-        "column": "Rec Cat 4R New"
+        "column": "Cat 12TTC Total Recommended"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
-        "column": "Rec Cat 4R New"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_of_type",
-      "kwargs": {
-        "column": "Rec Cat 4R New",
-        "type_": "str"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "Cat 4R New Funding"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "Cat 4R New Funding"
+        "column": "Cat 12TTC Total Recommended"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_be_in_type_list",
       "kwargs": {
-        "column": "Cat 4R New Funding",
+        "column": "Cat 12TTC Total Recommended",
         "type_list": [
           "int",
           "float"
@@ -419,43 +593,21 @@
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
-        "column": "Rec Cat 12TTC New"
+        "column": "Cat 12CL Total Recommened"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
-        "column": "Rec Cat 12TTC New"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_of_type",
-      "kwargs": {
-        "column": "Rec Cat 12TTC New",
-        "type_": "str"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "Cat 12 TTC New Funding"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "Cat 12 TTC New Funding"
+        "column": "Cat 12CL Total Recommened"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_be_in_type_list",
       "kwargs": {
-        "column": "Cat 12 TTC New Funding",
+        "column": "Cat 12CL Total Recommened",
         "type_list": [
           "int",
           "float"
@@ -466,21 +618,21 @@
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
-        "column": "Rec Cat 12CL New"
+        "column": "FUNDING GROUP NAME"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
-        "column": "Rec Cat 12CL New"
+        "column": "FUNDING GROUP NAME"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_be_of_type",
       "kwargs": {
-        "column": "Rec Cat 12CL New",
+        "column": "FUNDING GROUP NAME",
         "type_": "str"
       },
       "meta": {}
@@ -488,46 +640,21 @@
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
-        "column": "Cat 12CL New Funding"
+        "column": "ACTUAL LET DATE"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
-        "column": "Cat 12CL New Funding"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_in_type_list",
-      "kwargs": {
-        "column": "Cat 12CL New Funding",
-        "type_list": [
-          "int",
-          "float"
-        ]
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "Rec SWDA"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "Rec SWDA"
+        "column": "ACTUAL LET DATE"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_be_of_type",
       "kwargs": {
-        "column": "Rec SWDA",
+        "column": "ACTUAL LET DATE",
         "type_": "str"
       },
       "meta": {}
@@ -535,115 +662,21 @@
     {
       "expectation_type": "expect_column_to_exist",
       "kwargs": {
-        "column": "SWDA Recommended Amount"
+        "column": "LETTING ESTIMATE"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
-        "column": "SWDA Recommended Amount"
+        "column": "LETTING ESTIMATE"
       },
       "meta": {}
     },
     {
       "expectation_type": "expect_column_values_to_be_in_type_list",
       "kwargs": {
-        "column": "SWDA Recommended Amount",
-        "type_list": [
-          "int",
-          "float"
-        ]
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "DDA Reduction"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "DDA Reduction"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_of_type",
-      "kwargs": {
-        "column": "DDA Reduction",
-        "type_": "str"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "DDA Recommended Amount"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "DDA Recommended Amount"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_of_type",
-      "kwargs": {
-        "column": "DDA Recommended Amount",
-        "type_": "str"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "Total Other Categories Recommended"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "Total Other Categories Recommended"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_in_type_list",
-      "kwargs": {
-        "column": "Total Other Categories Recommended",
-        "type_list": [
-          "int",
-          "float"
-        ]
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_to_exist",
-      "kwargs": {
-        "column": "Total Amount Recommended (Cat 2/4/12)"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_not_be_null",
-      "kwargs": {
-        "column": "Total Amount Recommended (Cat 2/4/12)"
-      },
-      "meta": {}
-    },
-    {
-      "expectation_type": "expect_column_values_to_be_in_type_list",
-      "kwargs": {
-        "column": "Total Amount Recommended (Cat 2/4/12)",
+        "column": "LETTING ESTIMATE",
         "type_list": [
           "int",
           "float"

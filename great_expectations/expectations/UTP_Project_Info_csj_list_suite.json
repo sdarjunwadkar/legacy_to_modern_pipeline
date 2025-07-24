@@ -1,7 +1,30 @@
 {
   "data_asset_type": null,
-  "expectation_suite_name": "UTP_Project_Info_csj_list_suite",
-  "expectations": [],
+  "expectation_suite_name": "utp_project_info_csj_list_suite",
+  "expectations": [
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "CSJ"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "CSJ"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_of_type",
+      "kwargs": {
+        "column": "CSJ",
+        "type_": "str"
+      },
+      "meta": {}
+    }
+  ],
   "ge_cloud_id": null,
   "meta": {
     "great_expectations_version": "0.17.21"

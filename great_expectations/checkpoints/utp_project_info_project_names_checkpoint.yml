@@ -1,4 +1,4 @@
-name: UTP_Project_Info_Project_Group_ID_asset_checkpoint
+name: utp_project_info_project_names_checkpoint
 config_version: 1.0
 template_name:
 module_name: great_expectations.checkpoint
@@ -21,10 +21,10 @@ runtime_configuration: {}
 validations:
   - batch_request:
       datasource_name: local_filesystem
-      data_asset_name: UTP_Project_Info_Project_Group_ID_asset
+      data_asset_name: UTP_Project_Info_Project_Names_asset
       options: {}
       batch_slice:
-    expectation_suite_name: UTP_Project_Info_project_group_id_suite
+    expectation_suite_name: utp_project_info_project_names_suite
 profilers: []
 ge_cloud_id:
 expectation_suite_ge_cloud_id:

@@ -81,7 +81,7 @@ def run_validation_for_file(filename: str, suite_name: str = "default_suite") ->
             print(f"✅ Registered new asset: {asset_name}")
 
             # Create suite if needed
-            suite_name = f"{Path(filename).stem}_{sheet_name.replace(' ', '_').lower()}_suite"
+            suite_name = f"{Path(filename).stem.lower()}_{sheet_name.replace(' ', '_').lower()}_suite"
             if suite_name not in context.list_expectation_suite_names():
                 context.save_expectation_suite(ExpectationSuite(expectation_suite_name=suite_name))
                 print(f"🆕 Created suite: {suite_name}")
@@ -108,8 +108,12 @@ def run_validation_for_file(filename: str, suite_name: str = "default_suite") ->
                     else:
                         print(f"ℹ️ Skipping strftime format check for '{column}' (type: {actual_dtype})")
 
+            #Save the expectation suite
+            validator.save_expectation_suite(discard_failed_expectations=False)
+
+            checkpoint_name = suite_name.replace("_suite", "_checkpoint")
             checkpoint = context.add_or_update_checkpoint(
-                name=f"{asset_name}_checkpoint",
+                name=checkpoint_name,
                 validations=[{
                     "batch_request": asset.build_batch_request(),
                     "expectation_suite_name": suite_name,
@@ -182,6 +186,9 @@ def run_validation_for_file(filename: str, suite_name: str = "default_suite") ->
             else:
                 print(f"ℹ️ Skipping strftime format check for '{column}' (type: {actual_dtype})")
 
+    # ✅ Save expectations here
+    validator.save_expectation_suite(discard_failed_expectations=False)
+
     # 3. Run validation
     checkpoint = context.add_or_update_checkpoint(
         name=f"{asset_name}_checkpoint",
@@ -195,3 +202,7 @@ def run_validation_for_file(filename: str, suite_name: str = "default_suite") ->
     success = result["success"]
     print(f"\n✅ Validation Status: {'PASSED ✅' if success else 'FAILED ❌'}\n")
     return success
+
+if __name__ == "__main__":
+    run_validation_for_file("UTP_Project_Info.xlsx")
+    run_validation_for_file("BigData.xlsx", suite_name="bigdata_suite")

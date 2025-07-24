@@ -1,79 +1,55 @@
+# airflow_home/dags/file_validation_dag.py
+
+# airflow_home/dags/file_validation_dag.py
+
+import sys
+import os
+from datetime import datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from datetime import datetime, timedelta
-import hashlib
-import json
-import os
-import sys
 
-# Ensure project root is in sys.path so dq_checks can be found
-CURRENT_FILE = os.path.abspath(__file__)
-PROJECT_ROOT = os.path.abspath(os.path.join(CURRENT_FILE, "..", "..", ".."))
-sys.path.insert(0, PROJECT_ROOT)
+# Dynamically add project root to sys.path
+current_file = os.path.abspath(__file__)
+project_root = os.path.abspath(os.path.join(current_file, "..", "..", ".."))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 
 from dq_checks.gx_validator import run_validation_for_file
 
-WATCH_DIR = "data/incoming"
-CACHE_FILE = "logs/file_hash_cache.json"
-
 default_args = {
-    "owner": "airflow",
-    "retries": 1,
-    "retry_delay": timedelta(minutes=2),
+    "owner": "data_quality_team",
+    "start_date": datetime(2023, 1, 1),
+    "retries": 0,
 }
 
-def compute_md5(file_path):
-    hasher = hashlib.md5()
-    with open(file_path, "rb") as f:
-        while chunk := f.read(8192):
-            hasher.update(chunk)
-    return hasher.hexdigest()
-
-def load_cache():
-    if os.path.exists(CACHE_FILE):
-        with open(CACHE_FILE, "r") as f:
-            return json.load(f)
-    return {}
-
-def save_cache(cache):
-    with open(CACHE_FILE, "w") as f:
-        json.dump(cache, f, indent=2)
-
-def validate_files():
-    print("🔍 Running validation task from Airflow")
-    cache = load_cache()
-    updated_cache = cache.copy()
-
-    for filename in os.listdir(WATCH_DIR):
-        if filename.startswith(".") or not filename.lower().endswith((".xlsx", ".csv")):
-            continue
-
-        file_path = os.path.join(WATCH_DIR, filename)
-        if not os.path.isfile(file_path):
-            continue
-
-        file_hash = compute_md5(file_path)
-
-        if cache.get(filename) != file_hash:
-            print(f"[VALIDATING] {filename}")
-            run_validation_for_file(filename)
-            updated_cache[filename] = file_hash
-        else:
-            print(f"[SKIP] {filename} unchanged")
-
-    save_cache(updated_cache)
-
 with DAG(
-    "file_validation_dag",
+    dag_id="file_validation_dag",
     default_args=default_args,
-    description="Polls folder and validates new/updated Excel files",
-    schedule_interval="*/5 * * * *",  # every 5 minutes
-    start_date=datetime(2024, 1, 1),
+    schedule_interval=None,  # Will add cron later if needed
     catchup=False,
-    tags=["validation", "great_expectations"],
+    description="Validate incoming data files using Great Expectations",
+    tags=["data_quality", "validation"],
 ) as dag:
 
-    validate_task = PythonOperator(
-        task_id="validate_files",
-        python_callable=validate_files,
+    def validate_utp():
+        success = run_validation_for_file("UTP_Project_Info.xlsx")
+        if not success:
+            raise ValueError("UTP_Project_Info.xlsx validation failed ❌")
+
+    def validate_bigdata():
+        success = run_validation_for_file("BigData.xlsx", suite_name="bigdata_suite")
+        if not success:
+            raise ValueError("BigData.xlsx validation failed ❌")
+
+    validate_utp_task = PythonOperator(
+        task_id="validate_utp_project_info",
+        python_callable=validate_utp
     )
+
+    validate_bigdata_task = PythonOperator(
+        task_id="validate_bigdata",
+        python_callable=validate_bigdata
+    )
+
+    # Run both validations in parallel
+    [validate_utp_task, validate_bigdata_task]

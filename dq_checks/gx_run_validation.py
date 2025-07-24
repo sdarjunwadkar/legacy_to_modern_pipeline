@@ -8,13 +8,14 @@ context = gx.get_context()
 datasource = context.get_datasource("local_filesystem")
 
 # Step 3: Add CSV asset only if it doesn't exist
-asset_name = "test_file_asset"
+asset_name = "utp_project_info_asset"
 existing_asset_names = [a.name for a in datasource.assets]
 
+# If asset doesn't exist, add Excel asset instead of CSV
 if asset_name not in existing_asset_names:
-    asset = datasource.add_csv_asset(
+    asset = datasource.add_excel_asset(
         name=asset_name,
-        batching_regex=r"test_file\.csv"
+        batching_regex=r"UTP_Project_Info\.xlsx"
     )
     print(f"🆕 Asset '{asset_name}' added.")
 else:

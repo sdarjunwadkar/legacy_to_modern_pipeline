@@ -1,4 +1,4 @@
-name: UTP_Project_Info_CSJ_List_asset_checkpoint
+name: utp_project_info_comments_&_actions_checkpoint
 config_version: 1.0
 template_name:
 module_name: great_expectations.checkpoint
@@ -21,10 +21,10 @@ runtime_configuration: {}
 validations:
   - batch_request:
       datasource_name: local_filesystem
-      data_asset_name: UTP_Project_Info_CSJ_List_asset
+      data_asset_name: UTP_Project_Info_Comments_&_Actions_asset
       options: {}
       batch_slice:
-    expectation_suite_name: UTP_Project_Info_csj_list_suite
+    expectation_suite_name: utp_project_info_comments_&_actions_suite
 profilers: []
 ge_cloud_id:
 expectation_suite_ge_cloud_id:
