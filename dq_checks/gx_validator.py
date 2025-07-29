@@ -5,6 +5,10 @@ import great_expectations as gx
 import re
 from great_expectations.core.expectation_suite import ExpectationSuite
 import pandas as pd
+import os, sys
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 from dq_checks.schemas import (
     BIGDATA_COLUMNS,
     CSJ_LIST_COLUMNS,
@@ -24,6 +28,21 @@ sheet_configs = {
     "Project Group ID": PROJECT_GROUP_ID_COLUMNS,
     "HWY Various": HWY_VARIOUS_COLUMNS,
 }
+
+import json
+from datetime import datetime
+
+VALIDATION_LOG_PATH = Path("logs/validation_status.json")
+
+def _load_status():
+    if VALIDATION_LOG_PATH.exists():
+        with open(VALIDATION_LOG_PATH, "r") as f:
+            return json.load(f)
+    return {}
+
+def _save_status(data):
+    with open(VALIDATION_LOG_PATH, "w") as f:
+        json.dump(data, f, indent=2)
 
 # Initialize GE context once
 context = gx.get_context()
@@ -57,6 +76,7 @@ def run_validation_for_file(filename: str, suite_name: str = "default_suite") ->
     # Check if this file requires multi-sheet validation
     if filename == "UTP_Project_Info.xlsx":
         overall_passed = True  # Will be False if any sheet fails
+        failed_sheets = []
 
         for sheet_name, column_schema in sheet_configs.items():
             print(f"\n📄 Validating sheet: '{sheet_name}'")
@@ -122,8 +142,21 @@ def run_validation_for_file(filename: str, suite_name: str = "default_suite") ->
             result = checkpoint.run()
             sheet_passed = result["success"]
             print(f"✅ Sheet '{sheet_name}' Validation: {'PASSED ✅' if sheet_passed else 'FAILED ❌'}")
+
+            if not sheet_passed:
+                failed_sheets.append(sheet_name)
+
             overall_passed = overall_passed and sheet_passed
 
+        status_data = _load_status()
+        status_data[filename] = {
+            "status": "passed" if overall_passed else "failed",
+            "last_checked": datetime.now().isoformat(timespec='seconds'),
+            "details": {
+                "failed_sheets": failed_sheets
+            }
+        }
+        _save_status(status_data)
         return overall_passed
 
     # 1. Register CSV asset (only if not already exists)
@@ -201,6 +234,15 @@ def run_validation_for_file(filename: str, suite_name: str = "default_suite") ->
 
     success = result["success"]
     print(f"\n✅ Validation Status: {'PASSED ✅' if success else 'FAILED ❌'}\n")
+    status_data = _load_status()
+    status_data[filename] = {
+        "status": "passed" if success else "failed",
+        "last_checked": datetime.now().isoformat(timespec='seconds'),
+        "details": {
+            "notes": "Single-sheet validation. No per-sheet info available."
+        }
+    }
+    _save_status(status_data)
     return success
 
 if __name__ == "__main__":

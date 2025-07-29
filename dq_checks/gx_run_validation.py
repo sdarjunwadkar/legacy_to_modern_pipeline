@@ -40,3 +40,33 @@ result = checkpoint.run()
 
 # Step 6: Print pass/fail result
 print("\n✅ Validation Status:", "PASSED ✅" if result["success"] else "FAILED ❌")
+
+import os
+import json
+from datetime import datetime
+
+# Step 7: Log results to validation_status.json
+file_name = "UTP_Project_Info.xlsx"
+log_path = os.path.join("logs", "validation_status.json")
+os.makedirs("logs", exist_ok=True)
+
+# Initialize file if missing
+if not os.path.exists(log_path):
+    with open(log_path, "w") as f:
+        json.dump({}, f)
+
+# Load existing results
+with open(log_path, "r") as f:
+    data = json.load(f)
+
+# Update log
+data[file_name] = {
+    "status": "passed" if result["success"] else "failed",
+    "timestamp": datetime.utcnow().isoformat()
+}
+
+# Write back
+with open(log_path, "w") as f:
+    json.dump(data, f, indent=2)
+
+print(f"📁 Logged validation result for {file_name} to {log_path}")
