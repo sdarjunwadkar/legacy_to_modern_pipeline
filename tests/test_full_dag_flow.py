@@ -77,3 +77,23 @@ def test_full_dag_chaining_flow(mock_trigger, temp_file_env):
 
     # Step 4: Confirm DAG was triggered
     mock_trigger.assert_called_once_with("daily_bronze_promotion_dag")
+
+@patch("utils.validation_monitor.trigger_dag")
+def test_full_alert_only_path(mock_trigger, temp_file_env):
+    os.environ["VALIDATION_LOG"] = temp_file_env["validation_file"]
+    os.environ["ALERT_ONLY_MODE"] = "true"
+
+    # Step 1: Simulate file change
+    from utils.file_hashing import check_and_update_cache
+    changed = check_and_update_cache(temp_file_env["sample_file"], cache_file=temp_file_env["cache_file"])
+    assert changed is True
+
+    # Step 2: Simulate passing validation
+    simulate_validation_pass(temp_file_env["sample_file"], temp_file_env["validation_file"])
+
+    # Step 3: Trigger validation check
+    from utils.validation_monitor import check_validation_status
+    check_validation_status()
+
+    # Step 4: Confirm validation_pm_check_dag triggered
+    mock_trigger.assert_not_called()
