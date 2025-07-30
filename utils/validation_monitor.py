@@ -1,6 +1,7 @@
 # utils/validation_monitor.py
 
 import json
+import os
 from pathlib import Path
 from datetime import datetime
 
@@ -9,10 +10,11 @@ CRITICAL_FILES = ["UTP_Project_Info.xlsx", "BigData.xlsx"]
 
 
 def check_validation_status():
-    if not VALIDATION_LOG.exists():
-        raise FileNotFoundError(f"❌ Validation status log not found at {VALIDATION_LOG}")
+    validation_log = Path(os.getenv("VALIDATION_LOG", VALIDATION_LOG))
+    if not validation_log.exists():
+        raise FileNotFoundError(f"❌ Validation status log not found at {validation_log}")
 
-    with open(VALIDATION_LOG, "r") as f:
+    with open(validation_log, "r") as f:
         data = json.load(f)
 
     failed_files = []
@@ -40,4 +42,22 @@ def check_validation_status():
         print(msg)
         raise ValueError(msg + "\n❌ Validation check failed")
     else:
+         # If all critical files passed and promotion is active
+        from os import getenv
+        if getenv("ALERT_ONLY_MODE", "true").lower() != "true":
+            trigger_dag("daily_bronze_promotion_dag")
         print(f"✅ All files passed validation as of {datetime.now().isoformat(timespec='seconds')}")
+
+def trigger_dag(dag_id: str):
+    """
+    Triggers the given DAG using Airflow's local client.
+    This wrapper is added for testing/mocking purposes.
+    """
+    try:
+        from airflow.api.client.local_client import Client
+        client = Client()
+        client.trigger_dag(dag_id)
+        print(f"✅ DAG '{dag_id}' triggered successfully.")
+    except Exception as e:
+        print(f"❌ Failed to trigger DAG {dag_id}: {e}")
+        raise
